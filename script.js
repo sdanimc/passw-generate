@@ -1,5 +1,5 @@
 // Assignment Code
-var generateBtn = document.querySelector("#generate");
+
 
 
 var specCharA = ['@', '%', '+', '\\', '/', "'", '!', '#', '$', '^', '?', ':',
@@ -19,7 +19,7 @@ function passOptions() {
   if (!specialChar && !letterOpt && !includeNum) { alert("Password must have characters"); return null; }
   var passLength = parseInt(window.prompt("How long? Enter a number from 8 to 128"), 10);
   if (!passLength) { alert("You must choose a password length"); return null; }
-  if (Number.isNaN(passLength)) { alert("Password length must be a number"); }
+  if (Number.isNaN(passLength)) { alert("Password length must be a number"); return null;}
   if (passLength < 8) {
     alert("Password must be a minimum of 8 characters long");
     return null;
@@ -37,16 +37,7 @@ function passOptions() {
   console.log(userPassOpt);
   return userPassOpt;
 }
-// var index1 = math.floor(math.random() * specCharA.length);
-//var randSpec = specCharA[index1];
-//var index2 = math.floor(math.random() * numbers.length);
-//var index3 = math.floor(math.random() * letters.length);
-//var index4 = math.floor(math.random() * lettersUP.length);
-function generateChar(a) {
-  var index = Math.floor(Math.random() * a.length);
-  var randChar = a[index];
-  return randChar;
-}
+
 function generatePassword() {
   var userChoices = passOptions();
   if (!userChoices) { return null; }
@@ -66,13 +57,13 @@ function generatePassword() {
   }
   console.log(charArray);
   for (var i = 0; i < userChoices.length; i++) {
-    var charArray = generateChar(charArray);
-    passwordArr.push(charArray);
+    var passChar = charArray[Math.floor(Math.random() * charArray.length)];
+    passwordArr.push(passChar);
   }
   return passwordArr.join("");
 }
 
-var generateBtn = document.querySelector('#generate');
+var generateBtn = document.querySelector("#generate");
 
 function writePassword() {
   var password = generatePassword();
